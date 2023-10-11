@@ -1,0 +1,48 @@
+.username{
+    position: absolute;
+    top: -17px;
+    background-color: white;
+    border: 1px solid transparent;
+    transition: border 0.3s;
+}
+
+.shadow-element-username{
+    position: absolute;
+    top: -17px;
+}
+
+.card:hover .username,
+.card:hover .city{  
+    border: 1px solid #555;
+    border-radius: 5px;
+}
+
+.city{
+    position: absolute;
+    top: 95%;
+    right: 12px;
+    background-color: white;
+    border: 1px solid transparent;
+    transition: border 0.3s;
+}
+
+.shadow-element-city{
+    position: absolute;
+    top: 96%;
+    right: 12px;
+}
+
+.row{
+    margin-left: -37px;
+}
+
+.card{
+    width: 18rem;
+    margin-top: 100px;
+    border: 1px solid #555;
+    cursor: pointer;
+}
+
+.form-control{
+    border: 1px solid #555;
+}

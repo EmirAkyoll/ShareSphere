@@ -1,0 +1,17 @@
+.navbar{
+    background-color: #12402b !important;
+}
+
+.collapse{
+    flex-grow: 0;
+}
+
+.navbar-toggler{
+    background-color: #fff;
+}
+
+/* @media (max-width: 500px) {
+    .collapse{
+        flex-direction: column;
+    }
+ } */

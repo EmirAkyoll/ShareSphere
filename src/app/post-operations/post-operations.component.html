@@ -1,0 +1,98 @@
+<app-navbar />
+<section class="container mb-5">
+    <ng-container *ngIf="isOwnPostsLoading; else content">
+        <div class="container d-flex justify-content-center align-items-center" style="height: 70vh;">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #content>
+        
+        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+
+                <div [ngSwitch]="whichModal" class="modal-footer">
+
+                    <div *ngSwitchCase="'edit'">
+                      <h1 class="modal-title fs-5" id="modalLabel">Edit Post</h1>
+                    </div>
+
+                    <div *ngSwitchCase="'delete'"></div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+                <div [ngSwitch]="whichModal">
+
+                    <div *ngSwitchCase="'edit'" class="modal-body">
+                      <div class="mb-4">
+                          <label for="title" class="form-label">Title</label>
+                          <input type="email" [(ngModel)]="postToBeActedOn.title" class="form-control" id="title">
+                        </div>
+                        <div class="mb-3">
+                          <label for="content" class="form-label">Content</label>
+                          <textarea [(ngModel)]="postToBeActedOn.body" class="form-control" id="content" rows="4"></textarea>
+                        </div>
+                    </div>
+
+                    <div *ngSwitchCase="'delete'" class="modal-body">
+                      <p>You are almost delete this post, are you sure?</p>
+                    </div>
+                </div>
+
+              <div [ngSwitch]="whichModal" class="modal-footer">
+
+                  <div *ngSwitchCase="'edit'">
+                    <button type="button" (click)="updatePost()" class="btn btn-primary" data-bs-dismiss="modal">
+                    Save Changes
+                </button>
+                </div>
+
+                <div *ngSwitchCase="'delete'">
+                    <button type="button" (click)="deletePost()" class="btn btn-danger" data-bs-dismiss="modal">
+                    Delete It
+                </button>
+                  </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <ul class="row row-cols-auto gy-5 pt-4 justify-content-around">
+            <li class="card py-3" *ngFor="let post of ownPosts">
+                <button 
+                    type="button" 
+                    (click)="bringPostData(post);
+                             changeModalType('edit')"
+                    class="btn btn-primary options option-edit py-2 border border-secondary rounded px-2" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#modal"
+                >
+                    <img src="../../assets/edit-icon.png" alt="" class="option-edit-icon">
+                </button>
+                <button
+                    type="button"
+                    (click)="bringPostData(post);
+                             changeModalType('delete')"
+                    class="options option-delete py-2 border border-secondary rounded px-2"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#modal"
+                >
+                    <img src="../../assets/delete-icon.png" alt="">
+                </button>
+                <a routerLink='/comments/{{post?.id}}' class="text-black link-underline-light">
+                    <div class="card-body">
+                        <p class="text-center">{{post?.title | upperCase}}</p>
+                        <hr>
+                        <p class="" style="text-align: justify;">{{post?.body | capitalizeFirst}}.</p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </ng-template>
+</section>
+<footer class="container-fluid pt-2" style="background-color: #12402B;">.</footer>

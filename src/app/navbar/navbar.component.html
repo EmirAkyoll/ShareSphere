@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+  <div class="container">
+        <a routerLink="/" class="display-5 pb-1 link-offset-2 link-underline link-underline-opacity-0 text-white">ShareSphere</a>
+        <button class="navbar-toggler" 
+                type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#navbarNavDropdown" 
+                aria-controls="navbarNavDropdown" 
+                aria-expanded="false" 
+                aria-label="Toggle navigation"
+        >   
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse pr-0" id="navbarNavDropdown">
+            <span class="my-4 d-flex justify-content-between align-items-center">
+                <span class="mx-5">
+                    <a routerLink="/my-posts" class="mx-4 link-offset-2 link-underline link-underline-opacity-0 text-white fs-5">My Posts</a>
+                    <a routerLink="/login" class="mx-2 link-offset-2 link-underline link-underline-opacity-0 text-white fs-5">Log Out</a>
+                </span>
+                <span>
+                    <img src="../../assets/Search.svg" alt="" style="height: 35px;" class="mx-2">
+                    <input type="text" name="searchInput" id="searchInput" class="p-1 rounded" placeholder="Search">
+                </span>
+            </span>
+        </div>
+    <!-- </div> -->
+  </div>
+</nav>

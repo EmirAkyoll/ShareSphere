@@ -1,0 +1,81 @@
+<app-navbar />
+<section class="container mb-5">
+    <ng-container *ngIf="isLoading; else content" class="row row-cols-auto gy-5">
+        <ul class="row row-cols-auto gy-5 pt-4 justify-content-around">
+            <li class="card py-3" aria-hidden="true" *ngFor="let _ of [].constructor(12); let i = index">
+                <div class="card-body">
+                    <h5 class="card-title placeholder-glow text-center">
+                        <span class="shadow-element-username placeholder col-5"></span>
+                        <span class="placeholder col-12"></span>
+                        <span class="placeholder col-7"></span>
+                    </h5>
+                    <hr>
+                    <p class="card-text placeholder-glow">
+                        <span class="placeholder col-12"></span>
+                        <span class="placeholder col-12"></span>
+                        <span class="placeholder col-12"></span>
+                        <span class="placeholder col-12"></span>
+                        <span class="placeholder col-8"></span>
+                        <span class="shadow-element-city placeholder col-5"></span>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </ng-container>
+    <ng-template #content>
+        <button 
+            type="button" 
+            class="btn btn-primary mt-3" 
+            data-bs-toggle="modal" 
+            data-bs-target="#exampleModal"
+        >
+            Add New Post
+        </button>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">New Post</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-4">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" #title class="form-control" id="title">
+                          </div>
+                          <div class="mb-3">
+                            <label for="content" class="form-label">Content</label>
+                            <textarea #content class="form-control" id="content" rows="4"></textarea>
+                          </div>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                        <button 
+                            type="button" 
+                            (click)="addNewPostData(title.value, content.value)"
+                            class="btn btn-primary" 
+                            data-bs-dismiss="modal"
+                        >
+                          Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="row row-cols-auto gy-5 pt-4 justify-content-around">
+            <li class="card py-3" *ngFor="let post of mergedPosts" (click)="getAllComments(post.id)">
+                <a routerLink='/comments/{{post?.id}}' class="text-black link-underline-light">
+                    <span class="username px-2">{{post?.userName}}</span>
+                    <div class="card-body">
+                        <p class="text-center">{{post?.title | upperCase}}</p>
+                        <hr>
+                        <p class="" style="text-align: justify;">{{post?.body | capitalizeFirst}}.</p>
+                    </div>
+                    <span class="city px-2">from {{post?.city}}</span>
+                </a>
+            </li>
+        </ul>
+    </ng-template>
+</section>
+<footer class="container-fluid pt-2" style="background-color: #12402B;">.</footer>

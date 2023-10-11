@@ -1,0 +1,30 @@
+<app-navbar />
+<section class="container my-5">
+    <ng-container *ngIf="isChosenPostLoading; else content">
+        <div class="container d-flex justify-content-center align-items-center" style="height: 70vh;">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #content>
+        <ul class="row row-cols-auto gy-5 pt-4 justify-content-around">
+            <div class="pl-1 mb-5 border-3">
+                <p class="display-3 text-center">{{chosenPost?.title | upperCase}}</p>
+                <hr class="my-1">
+                <p class="display-6 chosen-post-body">{{chosenPost?.body | capitalizeFirst}}.</p>
+            </div>
+            <li class="card pl-1 mb-4 border-3" *ngFor="let comment of comments">
+                <div class="comment">
+                    <p>{{comment?.name | upperCase}}</p>
+                    <span class="d-flex justify-content-between align-items-centser">
+                        <img src="../../assets/email.png" alt="" class="mail-icon">
+                        <p class="mx-1">{{comment?.email}}</p>
+                    </span>
+                </div>
+                <hr class="my-1">
+                <p>{{comment?.body | capitalizeFirst}}.</p>
+            </li>
+        </ul>
+    </ng-template>
+</section>
